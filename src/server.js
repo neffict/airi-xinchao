@@ -6,7 +6,9 @@ const path = require("path");
 const crypto = require("crypto");
 
 // ─── 路径 ───────────────────────────────────────────────
-const STATE_DIR = path.resolve("state");
+// Use the wrapper script's directory as project root (reliable regardless of CWD)
+const PROJECT_ROOT = path.resolve(__dirname, "..");
+const STATE_DIR = path.join(PROJECT_ROOT, "state");
 const STATE_FILE = path.join(STATE_DIR, "xinchao_state.json");
 const HISTORY_FILE = path.join(STATE_DIR, "xinchao_history.jsonl");
 

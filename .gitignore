@@ -1,0 +1,4 @@
+node_modules/
+state/*.json
+state/*.jsonl
+.DS_Store

@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "心潮动态心智引擎 — Airi 版 stdio MCP 工具",
   "main": "src/server.js",
-  "type": "module",
   "scripts": {
     "start": "node src/server.js",
     "test": "node -e \"console.log('ok')\""

@@ -1,6 +1,8 @@
 # Airi 心潮 (airi-xinchao)
 
-心潮动态心智引擎的 stdio MCP 版本，为 Airi (17岁元气少女) 设计的轻量级 AI 状态管理工具。
+心潮动态心智引擎的 stdio MCP 版本，专为 [Airi](https://github.com/moeru-ai/airi) 设计的轻量级 AI 状态管理工具。
+
+> 适配角色：Airi — 17岁元气高中女生，乐观、话多、细腻，偶尔有点小调皮但不是烦人的那种。
 
 ## 和原版心潮的区别
 
@@ -52,6 +54,11 @@
 - **疲惫度(fatigue)** > 0.7 → 回复变短变安静
 
 状态文件在 `state/xinchao_state.json`。
+
+## Reference
+
+- [Airi](https://github.com/moeru-ai/airi) — 17岁高中女生的 AI 角色平台
+- [原版心潮 (xinchao-dynamic-mind)](https://github.com/tianyupaipai-cmd/xinchao-dynamic-mind) — HTTP 长连接版本
 
 ## License
 

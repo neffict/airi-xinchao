@@ -90,6 +90,8 @@ mcp_servers:
 | **screenshot** | 屏幕截图：捕获用户屏幕并以图片形式返回 | Python |
 | **digestor** | 对话压缩：缩减长对话的 token 消耗，管理上下文窗口 | Python |
 | **ocr** | OCR 文字识别：从图片/PDF 中提取文本，支持批量和多语言 | Python |
+| **agnes-image** | AI 图片生成：根据文字描述生成图片（Agnes Image 2.0/2.1 Flash） | Node.js |
+| **agnes-video** | AI 视频生成：根据文字描述生成视频，支持图生视频和配乐 | Node.js |
 
 ### memory — 知识图谱记忆
 
@@ -112,6 +114,25 @@ mcp_servers:
 使用 Tesseract 引擎从图片和 PDF 中提取文字。支持多语言、批量处理和指定页码范围。Airi 收到用户发的截图或文档照片后可以读取其中的文字内容。
 
 工具：`perform_ocr` / `image_to_data` / `perform_pdf_ocr` / `perform_batch_ocr` / `get_supported_languages`
+
+### agnes-image — AI 图片生成
+
+调用 [Agnes AI](https://platform.agnes-ai.com) 的图片生成 API（OpenAI 兼容），根据文字描述生成图片。支持多种比例和两个模型版本。
+
+工具：`agnes_generate_image` / `agnes_list_models`
+
+支持的模型：
+- **Agnes-Image-2.0-Flash** — 快速生成，~3s，免费
+- **Agnes-Image-2.1-Flash** — 最新模型，质量更好，~3s，免费
+
+### agnes-video — AI 视频生成
+
+调用 [Agnes AI](https://platform.agnes-ai.com) 的视频生成 API，根据文字描述生成视频（最长 10 秒）。支持 text-to-video 和 image-to-video（用参考图片生成），可选配乐。
+
+工具：`agnes_generate_video` / `agnes_video_status`
+
+支持的模型：
+- **agnes-video-v2.0** — text-to-video，支持音频，免费
 
 ## 驱动力系统
 

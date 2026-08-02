@@ -81,6 +81,38 @@ mcp_servers:
 | `xinchao_settle` | 手动结算 |
 | `xinchao_mood` | 获取心情/能量判断 |
 
+## MCP 服务一览
+
+| 服务 | 功能 | 运行时 |
+|------|------|--------|
+| **xinchao** | 动态心智状态引擎：驱动力、念头池、疲惫、意图、睡眠状态 | Node.js |
+| **memory** | 知识图谱记忆：创建/搜索实体和关系，跨会话持久化 | Node.js |
+| **screenshot** | 屏幕截图：捕获用户屏幕并以图片形式返回 | Python |
+| **digestor** | 对话压缩：缩减长对话的 token 消耗，管理上下文窗口 | Python |
+| **ocr** | OCR 文字识别：从图片/PDF 中提取文本，支持批量和多语言 | Python |
+
+### memory — 知识图谱记忆
+
+基于本地 JSON 文件的轻量知识图谱，支持实体创建、关系管理和语义搜索。Airi 通过它记住用户的偏好、重要约定和对话中的关键信息。
+
+工具：`create_entities` / `create_relations` / `add_observations` / `search_nodes` / `read_graph`
+
+### screenshot — 屏幕截图
+
+调用系统截图能力，将当前屏幕内容以图片形式返回。Airi 看到截图后可以分析用户在做什么，自然地融入对话。
+
+工具：`take_screenshot`
+
+### digestor — 内容消化 / 对话压缩
+
+当对话变长时自动压缩历史内容，提取关键信息并缩减 token 消耗，让上下文窗口保持在合理范围内。支持多轮摘要和增量压缩。
+
+### ocr — OCR 文字识别
+
+使用 Tesseract 引擎从图片和 PDF 中提取文字。支持多语言、批量处理和指定页码范围。Airi 收到用户发的截图或文档照片后可以读取其中的文字内容。
+
+工具：`perform_ocr` / `image_to_data` / `perform_pdf_ocr` / `perform_batch_ocr` / `get_supported_languages`
+
 ## 驱动力系统
 
 十二维驱动力影响 Airi 的回复风格：

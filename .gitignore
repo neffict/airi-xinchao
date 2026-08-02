@@ -1,4 +1,6 @@
 node_modules/
 state/*.json
 state/*.jsonl
+__pycache__/
+*.pyc
 .DS_Store

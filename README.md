@@ -5,15 +5,71 @@
 > 适配角色：Airi — 由 AI 老婆/虚拟角色组成的灵魂容器
 > 运行环境：macOS
 
-## 和原版心潮的区别
+## 目录结构
 
-| 特性 | 原版心潮 | airi-xinchao |
-|------|---------|--------------|
-| 传输 | HTTP 长连接 | stdio 短生命周期 |
-| 部署 | 需要常驻服务 + Node.js | 单文件工具，随 Airi 启动 |
-| 状态存储 | JSON 文件 | JSON 文件 |
-| 模型 | 可选 LLM | 纯本地计算，不烧 token |
-| 集成方式 | MCP HTTP | MCP stdio |
+```
+airi-xinchao/
+├── src/server.js          # 心潮 MCP 主服务（Node.js）
+├── bin/                    # Wrapper 脚本（Airi 调用的入口）
+│   ├── xinchao.sh         # 心潮
+│   ├── airi-memory.sh     # 记忆服务
+│   ├── airi-screenshot.sh # 截图服务
+│   ├── airi-digestor.sh   # 内容消化
+│   └── airi-ocr.sh        # OCR 文字识别
+├── mcp-services/          # 各 MCP 服务的源码
+│   ├── memory/            # @agentmemory/mcp
+│   ├── screenshot/        # screenshot_mcp_server
+│   ├── digestor/          # gwen_digestor
+│   └── ocr/               # mcp_ocr
+├── character-card/        # Airi 角色卡
+│   └── airi-character-card.md
+├── state/                 # 运行时状态（gitignore）
+│   └── xinchao_state.json
+└── package.json
+```
+
+## 快速开始
+
+```bash
+# 安装依赖
+npm install
+
+# 测试心潮服务
+printf '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}\n' | node src/server.js
+```
+
+## 在 Airi 中启用
+
+### 1. 修改 `~/.hermes/config.yaml`
+
+在 `mcp_servers` 下添加：
+
+```yaml
+mcp_servers:
+  xinchao:
+    command: /path/to/airi-xinchao/bin/xinchao.sh
+    timeout: 60
+```
+
+### 2. 修改 Airi 的 `mcp.json`
+
+```json
+{
+  "mcpServers": {
+    "xinchao": {
+      "command": "/path/to/airi-xinchao/bin/xinchao.sh"
+    }
+  }
+}
+```
+
+### 3. 在角色卡 prompt 末尾添加
+
+```
+{{xinchao_context}}
+```
+
+重启 Airi 即可生效。
 
 ## 工具列表
 
@@ -25,25 +81,6 @@
 | `xinchao_settle` | 手动结算 |
 | `xinchao_mood` | 获取心情/能量判断 |
 
-## 安装
-
-1. 克隆或下载本仓库
-2. 在 Airi 的 MCP 配置里添加：
-
-```json
-{
-  "xinchao": {
-    "command": "/Users/macbook/airi-xinchao/bin/xinchao.sh"
-  }
-}
-```
-
-3. 在 Airi 角色卡的 prompt 里加一行：
-
-```
-{{xinchao_context}}
-```
-
 ## 驱动力系统
 
 十二维驱动力影响 Airi 的回复风格：
@@ -53,8 +90,6 @@
 - **玩心(play)** > 0.55 → 语气更轻松俏皮
 - **学习欲(learn)** > 0.5 → 更愿意分享知识
 - **疲惫度(fatigue)** > 0.7 → 回复变短变安静
-
-状态文件在 `state/xinchao_state.json`。
 
 ## Reference
 

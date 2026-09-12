@@ -7,14 +7,14 @@ const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 
-const AGNES_BASE_URL = "https://apihub.agnes-ai.com/v1";
+const AGNES_BASE_URL = "https://apihub.agnes-ai.cn/v1";
 const API_KEY = process.env.AGNES_API_KEY || "";
 
 const MODELS = {
-  "Agnes-Image-2.0-Flash": { display: "Agnes Image 2.0 Flash", speed: "~3s" },
-  "Agnes-Image-2.1-Flash": { display: "Agnes Image 2.1 Flash", speed: "~3s" },
+  "agnes-image-2.0-flash": { display: "Agnes Image 2.0 Flash", speed: "~3s" },
+  "agnes-image-2.1-flash": { display: "Agnes Image 2.1 Flash", speed: "~3s" },
 };
-const DEFAULT_MODEL = "Agnes-Image-2.0-Flash";
+const DEFAULT_MODEL = "agnes-image-2.0-flash";
 const SIZES = { landscape: "1536x1024", square: "1024x1024", portrait: "1024x1536" };
 const CACHE_DIR = path.join(process.env.HOME, ".agnes-cache", "images");
 
@@ -26,7 +26,7 @@ function apiRequest(payload) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify(payload);
     const options = {
-      hostname: "apihub.agnes-ai.com",
+      hostname: "apihub.agnes-ai.cn",
       path: "/v1/images/generations",
       method: "POST",
       headers: {

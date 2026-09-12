@@ -8,7 +8,7 @@
 AGNES_API_KEY=你的 Agnes AI API Key
 ```
 
-获取 key：https://platform.agnes-ai.com
+获取 key：https://agnes-ai.cn
 
 ## 2. 启用 MCP 服务
 
@@ -63,7 +63,7 @@ video_gen:
 
 ## API 信息
 
-- Base URL：https://apihub.agnes-ai.com/v1
+- Base URL：https://apihub.agnes-ai.cn/v1
 - 图片模型：Agnes-Image-2.0-Flash (~3s), Agnes-Image-2.1-Flash (~3s)
 - 视频模型：agnes-video-v2.0 (~30-60s)，支持 text-to-video 和 image-to-video
 - 默认免费

@@ -6,7 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 
-const AGNES_BASE_URL = "https://apihub.agnes-ai.com/v1";
+const AGNES_BASE_URL = "https://apihub.agnes-ai.cn/v1";
 const API_KEY = process.env.AGNES_API_KEY || "";
 
 const AGNES_VIDEO_MODEL = "agnes-video-v2.0";
@@ -28,7 +28,7 @@ function ensureCacheDir() {
 function apiRequest(method, urlPath, body) {
   return new Promise((resolve, reject) => {
     const options = {
-      hostname: "apihub.agnes-ai.com",
+      hostname: "apihub.agnes-ai.cn",
       path: urlPath,
       method,
       headers: {
